@@ -1,0 +1,16 @@
+runaiProjects: 
+  ## here you should list all the projects that you would like to get notifications from 
+  - my_runai_project
+
+dump: 
+  enabled: false
+
+slack:
+  enabled: true
+  apiToken: ""
+  # set to a specific channel `runai-notifications` or 
+  # a user `@bob` or
+  # set 'pod-project' in order to send the notification dynamically to `@project` - configured on the pod labels 
+  channel: ""
+
+
