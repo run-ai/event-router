@@ -35,32 +35,6 @@ data:
             user:  {{` "{{ .InvolvedObject.Annotations.user }}" `}}
             host: {{` "{{ .Source.Host }}" `}} 
       {{ end }}
-      
-      {{ if eq .Values.slack.enabled true }}
-      - name: "slack"
-        slack:
-          token: {{ .Values.slack.apiToken | quote }}
-          
-          {{ if eq .Values.slack.channel "pod-owner" }}
-          channel: {{` "@{{ .InvolvedObject.Labels.owner }}" `}}
-          {{ else }}
-          channel: "{{ .Values.slack.channel }}"
-          {{ end }}
-
-          message: {{` "{{ .Message }}" `}} 
-          color: #7CD197
-          title: Runai job notification
-          author_name: runai-event-router
-          author_link: "https://github.com/run-ai/event-router"
-          footer: "Run.Ai Event Router"
-          footer_icon: "https://assets-global.website-files.com/61e95e54543a7c0a5967ffd1/635a79ad72a1555286e378b9_RunAi_Logo_Digital_2C_BP.svg"
-          fields:
-            Message: {{` "{{ .Message }}" `}} 
-            Namespace: {{` "{{ .Namespace }}" `}} 
-            Reason: {{` "{{ .Reason }}" `}}
-            RunaiUser: {{` "{{ .InvolvedObject.Annotations.user }}" `}}
-            RunaiProject: {{` "{{ .InvolvedObject.Labels.project }}" `}}
-      {{ end }}
     
       - name: "slack_hook"
         webhook:
