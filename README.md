@@ -4,7 +4,7 @@ This repo is a wrapper chart of [kubernetes-event-exporter](https://github.com/r
 > **Note**: Event router currently is configured out of the box only for parsing Run.ai scheduler events to slack
 
 ## Configure slack notifications
-### Create your `values.yaml` in order to configure the chart.
+### Clone the repository and edit the `values.yaml` file
 ```yaml
 runaiProjects: 
   - my_runai_project
@@ -32,5 +32,5 @@ To create a Slack App follow: [guide to creating Slack apps with bot tokens](htt
 ### Deploy the chart
 After configuring the values file you can run the following command in order to deploy the chart:
 ```sh
-helm install  
+helm install runai-event-router . -n runai-monitoring
 ``` 
