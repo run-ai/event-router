@@ -36,7 +36,7 @@ data:
             host: {{` "{{ .Source.Host }}" `}} 
       {{ end }}
     
-      - name: "slack_hook"
+      - name: "slack_scheduled_hook"
         webhook:
           endpoint: "https://slack.com/api/chat.postMessage"
           headers:
@@ -47,7 +47,20 @@ data:
             {{ else }}
             channel: "{{ .Values.slack.channel }}"
             {{ end }}
-          {{ .Files.Get "layouts/slack_layout.yaml" | indent 2}}
+          {{ .Files.Get "layouts/slack_scheduled_layout.yaml" | indent 2}}
+      
+      - name: "slack_evicted_hook"
+        webhook:
+          endpoint: "https://slack.com/api/chat.postMessage"
+          headers:
+            Authorization: "Bearer {{ .Values.slack.apiToken }}"
+          layout:
+            {{ if eq .Values.slack.channel "pod-project" }}
+            channel: {{` "@{{ .InvolvedObject.Labels.project }}" `}}
+            {{ else }}
+            channel: "{{ .Values.slack.channel }}"
+            {{ end }}
+          {{ .Files.Get "layouts/slack_evicted_layout.yaml" | indent 2}}
       
 
     route:
@@ -58,14 +71,12 @@ data:
               kind: "Pod"
               reason: "Scheduled"
               component: "runai-scheduler"
-              {{ if eq $.Values.dump.enabled true }}receiver: "dump"{{ end }}
-              {{ if eq $.Values.slack.enabled true }}receiver: "slack_hook"{{ end }}
+              {{ if eq $.Values.slack.enabled true }}receiver: "slack_scheduled_hook"{{ end }}
             {{- end }}
             {{- range .Values.runaiProjects }}
             - namespace: "runai-{{ . }}"
               kind: "PodGroup"
               component: "runai-scheduler"
               reason: "Evict"
-              {{ if eq $.Values.dump.enabled true }}receiver: "dump"{{ end }}
-              {{ if eq $.Values.slack.enabled true }}receiver: "slack_hook"{{ end }}
+              {{ if eq $.Values.slack.enabled true }}receiver: "slack_evicted_hook"{{ end }}
             {{- end }}
