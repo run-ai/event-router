@@ -9,7 +9,6 @@ blocks:
               type: image
               image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/evicted.png?token=GHSAT0AAAAAAB5M5WWXG26WKLD3AUVWO7SEY7BJJXA
               alt_text: Pod Scheduled
-          - type: divider
           - type: section
             fields:
             - type: mrkdwn
@@ -35,3 +34,4 @@ blocks:
               alt_text: Run.Ai
             - type: mrkdwn
               text: Run.Ai <https://github.com/run-ai/event-router|event-router>
+          - type: divider
