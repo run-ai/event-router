@@ -66,17 +66,14 @@ data:
     route:
       routes:
         - match:
-            {{- range .Values.runaiProjects }}
-            - namespace: "runai-{{ . }}"
+            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
               kind: "Pod"
               reason: "Scheduled"
               component: "runai-scheduler"
               {{ if eq $.Values.slack.enabled true }}receiver: "slack_scheduled_hook"{{ end }}
-            {{- end }}
-            {{- range .Values.runaiProjects }}
-            - namespace: "runai-{{ . }}"
+            
+            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
               kind: "PodGroup"
               component: "runai-scheduler"
               reason: "Evict"
               {{ if eq $.Values.slack.enabled true }}receiver: "slack_evicted_hook"{{ end }}
-            {{- end }}
