@@ -9,7 +9,6 @@ blocks:
               type: image
               image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/scheduled.png?token=GHSAT0AAAAAAB5M5WWXKUKHXW7QWDR7QE3YY7BIXSQ
               alt_text: Pod Scheduled
-          - type: divider
           - type: section
             fields:
             - type: mrkdwn
