@@ -56,7 +56,16 @@ data:
             {{- range .Values.runaiProjects }}
             - namespace: "runai-{{ . }}"
               kind: "Pod"
+              reason: "Scheduled"
               component: "runai-scheduler"
+              {{ if eq $.Values.dump.enabled true }}receiver: "dump"{{ end }}
+              {{ if eq $.Values.slack.enabled true }}receiver: "slack_hook"{{ end }}
+            {{- end }}
+            {{- range .Values.runaiProjects }}
+            - namespace: "runai-{{ . }}"
+              kind: "PodGroup"
+              component: "runai-scheduler"
+              reason: "Evict"
               {{ if eq $.Values.dump.enabled true }}receiver: "dump"{{ end }}
               {{ if eq $.Values.slack.enabled true }}receiver: "slack_hook"{{ end }}
             {{- end }}
