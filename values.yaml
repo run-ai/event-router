@@ -2,9 +2,6 @@ runaiProjects:
   ## here you should list all the projects that you would like to get notifications from 
   - my_runai_project
 
-dump: 
-  enabled: false
-
 slack:
   enabled: true
   apiToken: ""
