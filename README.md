@@ -59,7 +59,7 @@ permissions. (see previous section)
 
 `channel` - A destination channel **'runai-notifications'** a direct message '**@bob.marly**' or dynamic by setting '**pod-project**'.
 
-> If the value is of `channel` is set to pod-project, the event router will try to send the notification by tagging '**@project**' where project is taken from the 'project' label attached to your pod by runai.
+> If the value of `channel` is set to pod-project, the event router will try to send the notification by tagging '**@project**' where project is taken from the 'project' label attached to your pod by runai.
 
 ### Deploy the chart
 After configuring the values file you can run the following command in order to deploy the chart:
