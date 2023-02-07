@@ -4,6 +4,7 @@ blocks:
               type: mrkdwn
               text: |-
                 *Run.Ai Job Notification*
+                
                 *{{ .Message }}*
             accessory:
               type: image
