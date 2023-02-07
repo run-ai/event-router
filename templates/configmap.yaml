@@ -17,7 +17,6 @@ data:
     logLevel: debug
     logFormat: pretty
     receivers:
-      {{ if eq .Values.dump.enabled true }}
       - name: "dump"
         file:
           path: "/dev/stdout"
@@ -34,7 +33,6 @@ data:
             annotations:  {{` "{{ .InvolvedObject.Annotations }}" `}}
             user:  {{` "{{ .InvolvedObject.Annotations.user }}" `}}
             host: {{` "{{ .Source.Host }}" `}} 
-      {{ end }}
     
       - name: "slack_scheduled_hook"
         webhook:

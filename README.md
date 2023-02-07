@@ -1,4 +1,4 @@
-# Run.Ai event-router
+# Run.Ai event-router 
 This repo is a wrapper chart of [kubernetes-event-exporter](https://github.com/resmoio/kubernetes-event-exporter) open source project configured specifically to trigger alerts from Run.Ai cluster. 
 
 > **Note**: Event router currently is configured out of the box only for parsing Run.ai scheduler events to slack
