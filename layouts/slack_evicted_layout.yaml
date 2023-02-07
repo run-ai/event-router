@@ -8,7 +8,7 @@ blocks:
                 {{ .Message }}
             accessory:
               type: image
-              image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/evicted2.png?token=GHSAT0AAAAAAB5M5WWWYI6JAXFRQUE5CYQAY7CF5IA
+              image_url: https://raw.githubusercontent.com/run-ai/event-router/main/icons/evicted.png
               alt_text: Pod Scheduled
           - type: section
             fields:
@@ -31,7 +31,7 @@ blocks:
           - type: context
             elements:
             - type: image
-              image_url: https://assets-global.website-files.com/61e95e54543a7c0a5967ffd1/636aad25e8103d62c6fc1281_RunAI-featured.png
+              image_url: https://raw.githubusercontent.com/run-ai/event-router/main/icons/runai_logo.png
               alt_text: Run.Ai
             - type: mrkdwn
               text: Run.Ai <https://github.com/run-ai/event-router|event-router>
