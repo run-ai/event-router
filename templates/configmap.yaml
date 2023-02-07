@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: runai-event-router
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-02-02T14:42:13Z"
+  labels:
+    app.kubernetes.io/instance: runai-event-router
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubernetes-event-exporter
+    helm.sh/chart: kubernetes-event-exporter-2.1.6
+  name: runai-event-router-kubernetes-event-exporter
+  namespace: default
+data:
+  config.yaml: |
+    logLevel: debug
+    logFormat: pretty
+    receivers:
+      {{ if eq .Values.dump.enabled true }}
+      - name: "dump"
+        file:
+          path: "/dev/stdout"
+          layout:
+            message: {{` "{{ .Message }}" `}} 
+            reason: {{` "{{ .Reason }}" `}} 
+            type: {{` "{{ .Type }}" `}} 
+            count: {{` "{{ .Count }}" `}} 
+            kind: {{` "{{ .InvolvedObject.Kind }}" `}} 
+            name: {{` "{{ .InvolvedObject.Name }}" `}} 
+            namespace: {{` "{{ .Namespace }}" `}} 
+            component: {{` "{{ .Source.Component }}" `}}
+            labels:  {{` "{{ .InvolvedObject.Labels }}" `}}
+            annotations:  {{` "{{ .InvolvedObject.Annotations }}" `}}
+            user:  {{` "{{ .InvolvedObject.Annotations.user }}" `}}
+            host: {{` "{{ .Source.Host }}" `}} 
+      {{ end }}
+    
+      - name: "slack_scheduled_hook"
+        webhook:
+          endpoint: "https://slack.com/api/chat.postMessage"
+          headers:
+            Authorization: "Bearer {{ .Values.slack.apiToken }}"
+          layout:
+            {{ if eq .Values.slack.channel "pod-project" }}
+            channel: {{` "@{{ .InvolvedObject.Labels.project }}" `}}
+            {{ else }}
+            channel: "{{ .Values.slack.channel }}"
+            {{ end }}
+          {{ .Files.Get "layouts/slack_scheduled_layout.yaml" | indent 2}}
+      
+      - name: "slack_evicted_hook"
+        webhook:
+          endpoint: "https://slack.com/api/chat.postMessage"
+          headers:
+            Authorization: "Bearer {{ .Values.slack.apiToken }}"
+          layout:
+            {{ if eq .Values.slack.channel "pod-project" }}
+            channel: {{` "@{{ .InvolvedObject.Labels.project }}" `}}
+            {{ else }}
+            channel: "{{ .Values.slack.channel }}"
+            {{ end }}
+          {{ .Files.Get "layouts/slack_evicted_layout.yaml" | indent 2}}
+      
+
+    route:
+      routes:
+        - match:
+            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
+              kind: "Pod"
+              reason: "Scheduled"
+              component: "runai-scheduler"
+              {{ if eq $.Values.slack.enabled true }}receiver: "slack_scheduled_hook"{{ end }}
+            
+            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
+              kind: "PodGroup"
+              component: "runai-scheduler"
+              reason: "Evict"
+              {{ if eq $.Values.slack.enabled true }}receiver: "slack_evicted_hook"{{ end }}
