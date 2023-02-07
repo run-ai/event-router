@@ -67,3 +67,6 @@ After configuring the values file you can run the following command in order to 
 helm install runai-event-router . -n runai-monitoring
 ``` 
 
+### Checkout your channel
+![slack example](icons/example_slack.png)
+

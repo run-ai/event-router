@@ -8,7 +8,7 @@ blocks:
                 {{ .Message }}
             accessory:
               type: image
-              image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/scheduled.png?token=GHSAT0AAAAAAB5M5WWXS2HQ4BMO5T2TA47MY7CF5XA
+              image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/scheduled.png?token=GHSAT0AAAAAAB5M5WWX3H3AQEMS5CHM3VXYY7CKWWQ
               alt_text: Pod Scheduled
           - type: section
             fields:
