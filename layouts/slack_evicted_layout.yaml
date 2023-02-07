@@ -4,11 +4,11 @@ blocks:
               type: mrkdwn
               text: |-
                 *Run.Ai Job Notification*
-                
-                *{{ .Message }}*
+
+                {{ .Message }}
             accessory:
               type: image
-              image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/evicted.png?token=GHSAT0AAAAAAB5M5WWXG26WKLD3AUVWO7SEY7BJJXA
+              image_url: https://raw.githubusercontent.com/run-ai/event-router/initial-chart-and-docs/icons/evicted2.png?token=GHSAT0AAAAAAB5M5WWWYI6JAXFRQUE5CYQAY7CF5IA
               alt_text: Pod Scheduled
           - type: section
             fields:
