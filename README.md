@@ -47,7 +47,7 @@ slack:
   channel: ""
 ```
 
-`runaiProjects` - Projects listed here will set notifications, regex pattern is supported `runai-*` etc'...
+`runaiProjects` - Projects listed here will set notifications, regex pattern is supported `runai-.*` etc'...
 
 **slack**
 
