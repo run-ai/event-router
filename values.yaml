@@ -2,6 +2,8 @@ runaiProjects:
   ## here you should list all the projects that you would like to get notifications from 
   - my_runai_project
 
+clusterName: ""
+
 slack:
   enabled: true
   apiToken: ""

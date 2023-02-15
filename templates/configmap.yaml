@@ -45,7 +45,7 @@ data:
             {{ else }}
             channel: "{{ .Values.slack.channel }}"
             {{ end }}
-          {{ .Files.Get "layouts/slack_scheduled_layout.yaml" | indent 2}}
+          {{ .Files.Get "layouts/slack_scheduled_layout.yaml" | indent 2 | replace "CLUSTER" (toString .Values.clusterName) }}
       
       - name: "slack_evicted_hook"
         webhook:
@@ -58,7 +58,7 @@ data:
             {{ else }}
             channel: "{{ .Values.slack.channel }}"
             {{ end }}
-          {{ .Files.Get "layouts/slack_evicted_layout.yaml" | indent 2}}
+          {{ .Files.Get "layouts/slack_evicted_layout.yaml" | indent 2 | replace "CLUSTER" (toString .Values.clusterName) }}
       
 
     route:

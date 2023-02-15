@@ -41,6 +41,8 @@ After creating your app go to the "**OAuth & Permissions**" section in your app 
 runaiProjects: 
   - my_runai_project
 
+clusterName: ""
+
 slack:
   enabled: true
   apiToken: ""
@@ -48,6 +50,8 @@ slack:
 ```
 
 `runaiProjects` - Projects listed here will set notifications, regex pattern is supported `runai-.*` etc'...
+
+`clusterName` - Identifier for the cluster to show in the notifications
 
 **slack**
 
