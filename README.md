@@ -25,6 +25,7 @@ oauth_config:
     bot:
       - chat:write
       - incoming-webhook
+      - chat:write.public
 settings:
   org_deploy_enabled: false
   socket_mode_enabled: false
