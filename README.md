@@ -50,7 +50,7 @@ slack:
   channel: ""
 ```
 
-`runaiProjects` - Projects listed here will set notifications, regex pattern is supported `runai-.*` etc'...
+`runaiProjects` - Projects listed here will set notifications, regex pattern is supported `.*` will grep all etc'...
 
 `clusterName` - Identifier for the cluster to show in the notifications
 
