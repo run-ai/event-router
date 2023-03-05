@@ -8,10 +8,9 @@ metadata:
   labels:
     app.kubernetes.io/instance: runai-event-router
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: kubernetes-event-exporter
-    helm.sh/chart: kubernetes-event-exporter-2.1.6
-  name: runai-event-router-kubernetes-event-exporter
-  namespace: default
+    app.kubernetes.io/name: runai-event-router
+    helm.sh/chart: runai-event-router-1.0.1
+  name: runai-event-router
 data:
   config.yaml: |
     logLevel: debug

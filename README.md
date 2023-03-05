@@ -69,7 +69,7 @@ permissions. (see previous section)
 ### Deploy the chart
 After configuring the values file you can run the following command in order to deploy the chart:
 ```sh
-helm install runai-event-router . -n runai-monitoring
+helm install runai-event-router . -n runai-monitoring --create-namespace
 ``` 
 
 ### Checkout your channel

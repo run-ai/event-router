@@ -2,7 +2,7 @@ apiVersion: v2
 
 name: runai-event-exporter
 
-version: 1.0.0
+version: 1.0.1
 
 dependencies:
 - name: kubernetes-event-exporter
