@@ -67,9 +67,10 @@ permissions. (see previous section)
 > If the value of `channel` is set to pod-project, the event router will try to send the notification by tagging '**@project**' where project is taken from the 'project' label attached to your pod by runai.
 
 ### Deploy the chart
-After configuring the values file you can run the following command in order to deploy the chart:
+After configuring the values file you can run the following commands in order to deploy the chart:
 ```sh
-helm install runai-event-router . -n runai-monitoring --create-namespace
+chmod +x post-process.sh
+helm install runai-event-router . -n runai-monitoring --create-namespace --post-renderer ./post-process.sh
 ``` 
 
 ### Checkout your channel
