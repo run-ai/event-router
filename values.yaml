@@ -1,6 +1,7 @@
 runaiProjects: 
   ## here you should list all the projects that you would like to get notifications from 
   - my_runai_project
+  - stam_odd_project
 
 clusterName: ""
 

@@ -63,13 +63,13 @@ data:
     route:
       routes:
         - match:
-            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
+            - namespace: "{{- range $i, $v := .Values.runaiProjects }}{{if $i}}|{{end}}runai-{{ . }}{{- end }}"
               kind: "Pod"
               reason: "Scheduled"
               component: "runai-scheduler"
               {{ if eq $.Values.slack.enabled true }}receiver: "slack_scheduled_hook"{{ end }}
             
-            - namespace: "{{- range .Values.runaiProjects }}runai-{{ . }}|{{- end }}"
+            - namespace: "{{- range $i, $v := .Values.runaiProjects }}{{if $i}}|{{end}}runai-{{ . }}{{- end }}"
               kind: "PodGroup"
               component: "runai-scheduler"
               reason: "Evict"
